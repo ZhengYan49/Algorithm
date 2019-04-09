@@ -1,0 +1,25 @@
+#include<iostream>
+#include<vector>
+
+using namespace std;
+
+void main(){
+vector<int> tem;
+	vector<vector<int>> s;
+	while (true) {
+		while (true) {
+			cin >> a;
+			tem.push_back(a);
+			if (cin.get() == '\n')
+				break;
+		}
+		s.push_back(tem);
+		tem.clear();
+		char t = cin.get();
+		if (t == EOF)
+			break;
+		else
+			ungetc(t, stdin);//为了避免cin.get()直接取走了字符，因此用此函数令其返还
+
+	}
+}
