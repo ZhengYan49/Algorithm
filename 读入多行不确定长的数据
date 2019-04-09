@@ -4,7 +4,7 @@
 using namespace std;
 
 void main(){
-vector<int> tem;
+    vector<int> tem;
 	vector<vector<int>> s;
 	while (true) {
 		while (true) {
