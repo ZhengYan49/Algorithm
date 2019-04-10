@@ -5,7 +5,9 @@
 using namespace std;
 
 vector<string>vc;
+
 void Per(string &str, int start, int len);
+
 void swap(char &a, char &b) {
 	char temp;
 	temp = a;
@@ -16,18 +18,18 @@ void swap(char &a, char &b) {
 vector<string> Permutation(string str) {
 	if (str.empty()) return vc;
 	Per(str, 0, str.size());
-	sort(vc.begin(), vc.end());
+	sort(vc.begin(), vc.end());//得到的结果不是按字典序，因此排序
 	auto it = unique(vc.begin(), vc.end());
-	vc.erase(it, vc.end());
+	vc.erase(it, vc.end());去重复的字符串，避免abb这样的字符串所造成的的重复
 	return vc;
 }
 
 void Per(string &str, int start, int len) {
-	if (start == len-1) vc.push_back(str);
+	if (start == len-1) vc.push_back(str);//递归结束条件
 	for (int i = start; i < len;i++) {
 		swap(str[start], str[i]);
 		Per(str, start + 1, len);
-		swap(str[start], str[i]);
+		swap(str[start], str[i]);//复位
 	}
 }
 
