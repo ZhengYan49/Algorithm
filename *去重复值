@@ -1,0 +1,5 @@
+vector<string>vec(a,a+10);//a是指针，10代表10个元素
+
+sort(vec.begin(),vec.end());
+auto it=unique(vec.begin(),vec.end());
+vec.erase(it,vec.end());
