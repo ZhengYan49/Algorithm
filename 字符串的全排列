@@ -1,0 +1,42 @@
+#include<iostream>
+#include<vector>
+#include<string>
+#include<algorithm>
+using namespace std;
+
+vector<string>vc;
+void Per(string &str, int start, int len);
+void swap(char &a, char &b) {
+	char temp;
+	temp = a;
+	a = b;
+	b = temp;
+}
+
+vector<string> Permutation(string str) {
+	if (str.empty()) return vc;
+	Per(str, 0, str.size());
+	sort(vc.begin(), vc.end());
+	auto it = unique(vc.begin(), vc.end());
+	vc.erase(it, vc.end());
+	return vc;
+}
+
+void Per(string &str, int start, int len) {
+	if (start == len-1) vc.push_back(str);
+	for (int i = start; i < len;i++) {
+		swap(str[start], str[i]);
+		Per(str, start + 1, len);
+		swap(str[start], str[i]);
+	}
+}
+
+void main() {
+	
+	string b = "aefd";
+	vector<string>vec;
+	vec=Permutation(b);
+	for (auto x : vec) {
+		cout << x << endl;
+	}
+}
