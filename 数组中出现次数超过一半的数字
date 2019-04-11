@@ -1,0 +1,31 @@
+//弱鸡做法
+int MoreThanHalfNum_Solution(vector<int> numbers) {
+	int count = 1, count1 = 0;
+	int max = 0;
+
+	int len = numbers.size();
+	for (int k = 0; k < len; k++){
+		for (int i = 1; i < len; i++) {
+			if (numbers[k] == numbers[i]) count++;
+		}
+		if (count1 < count) {
+			count1 = count;
+			max = numbers[k];
+		}
+		count = 0;
+	}
+	if (count1 > len / 2) return max;
+	else return 0;
+}
+
+//简单做法
+int MoreThanHalfNum_Solution(vector<int> numbers) {
+        if(numbers.empty()) return 0;
+        sort(numbers.begin(),numbers.end());
+        int middle = numbers[numbers.size()/2];
+        int count=0;
+        for(int i=0;i<numbers.size();i++){
+            if(numbers[i]==middle) ++count;
+        }
+        return (count>numbers.size()/2)?middle:0;
+   }
