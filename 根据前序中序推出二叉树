@@ -1,0 +1,27 @@
+/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+ 
+class Solution {
+public:
+    TreeNode* Create(int pos1, int pos2, int n,vector<int> pre, vector<int> vin) {
+        if(n==0) return nullptr;
+        TreeNode *p = new TreeNode(pre[pos1]);
+        int i=0;
+        for (; pre[pos1] != vin[pos2+i]; i++);//找到中序中与前序第一个相等的值，代表着根结点，然后左边的是左子树右边的是右子树，进而递归。
+	    p->left = Create(pos1 + 1, pos2, i, pre, vin);
+	    p->right = Create(pos1 + i + 1, pos2 + i + 1, n - i - 1, pre, vin);
+		return p;
+
+    }
+    TreeNode* reConstructBinaryTree(vector<int> pre,vector<int> vin) {
+        int len = pre.size();
+	    return Create(0, 0, len, pre,vin);
+    }
+};
