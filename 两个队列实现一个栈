@@ -1,0 +1,44 @@
+#include<iostream>
+#include<vector>
+#include<string>
+#include<queue>
+using namespace std;
+
+class myStack {
+public:
+	void push(int node);
+	int pop();
+private:
+	queue<int>queue1;
+	queue<int>queue2;
+};
+void myStack::push(int node) {
+	queue1.push(node);
+}
+int myStack::pop() {//保证queue2一直为空，作为queue1的辅助
+	while (queue1.size() > 1) {
+		queue2.push(queue1.front());
+		queue1.pop();
+	}
+	int b = queue1.front();
+	queue1.pop();
+	while (!queue2.empty()) {
+		queue1.push(queue2.front());
+		queue2.pop();
+	}
+	return b;
+}
+void main() {
+	myStack a;
+	a.push(1);
+	a.push(2);
+	a.push(3);
+	cout<<a.pop()<<" ";
+	a.push(5);
+	cout << a.pop() << " ";
+	cout << a.pop() << " ";
+	cout << a.pop() << " ";
+	a.push(4);
+	cout << a.pop() << " ";
+	system("pause");
+}
