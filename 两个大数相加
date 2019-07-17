@@ -3,7 +3,7 @@
 #include<string>
 #include<queue>
 using namespace std;
-
+//未考虑负数，未考虑输入是否不规范
 void sumMax( string s1, string s2) {
 	//string s1 = to_string(b);
 	//string s2 = to_string(c);
