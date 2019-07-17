@@ -1,0 +1,47 @@
+#include<iostream>
+#include<vector>
+#include<string>
+#include<queue>
+using namespace std;
+
+void sumMax( string s1, string s2) {
+	//string s1 = to_string(b);
+	//string s2 = to_string(c);
+	int len1 = s1.length();
+	int len2 = s2.length();
+	int len = 1;
+	len += len1 < len2 ? len2: len1;
+	for (int k = len - len1-1; k > 0; k--) {
+		s1 = '0' + s1;
+	}
+
+	for (int k = len - len2-1; k > 0; k--) {
+		s2 = '0' + s2;
+	}
+	int nTakeOver = 0;
+	char*s = new char[len + 1];
+	memset(s, '0',len);
+	s[len] = '\0';
+	for (int i = len - 2; i >= 0; i--) {
+		int nSum = (s1[i] - '0') + (s2[i] - '0') + nTakeOver;
+		nTakeOver = 0;
+		if (nSum >= 10) {
+			nSum -= 10;
+			nTakeOver = 1;
+		}
+		s[i + 1] = nSum+'0';
+	}
+	for (int i = 0; i < len; i++) {
+		if (nTakeOver == 1) s[0] = '1';
+		if (i == 0 && s[0] == '0') continue;
+		cout << s[i]-'0';
+	}
+	cout << endl;
+	delete[]s;
+}
+
+void main (){
+	sumMax("123485751248751223412454575122", "24578412134545732231245451");
+	
+	system("pause");
+}
